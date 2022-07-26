@@ -1,0 +1,14 @@
+.control__operation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.control__operation_delete {
+  width: 150px;
+  border-radius: 45px 0 0 45px;
+}
+.control__operation_completed {
+  width: 150px;
+  border-radius: 0 45px 45px 0;
+}

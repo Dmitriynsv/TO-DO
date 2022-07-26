@@ -1,0 +1,39 @@
+.control {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(226, 226, 226, 0.73);
+}
+
+.control__inter {
+  margin: 0 auto;
+}
+.control__inter_event {
+  width: 100%;
+  border-radius: 45px 45px 10px 10px;
+  padding-left: 20px;
+  padding-right: 0;
+  margin: 10px 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+.control__check {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.control__filter {
+  width: 100%;
+}
+.control__filter_text {
+  width: 100%;
+  border-radius: 10px 10px 45px 45px;
+  padding-left: 20px;
+  margin: 10px 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.no-todos {
+  width: 100%;
+  text-align: center;
+}

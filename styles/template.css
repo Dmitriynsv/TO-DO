@@ -1,0 +1,9 @@
+.list__events__todoItem {
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  border-radius: 35px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 20px 0;
+}
