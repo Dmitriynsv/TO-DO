@@ -23,16 +23,16 @@
             placeholder="inter your todo"
             data-inter-todo
           />
-          <button class="btn-add" data-add-todo-button>add todo</button>
+          <button class="btn-add" data-add-todo-button>ADD TODO</button>
           <hr />
           <p class="control__check">
             <span
-              >Aktive:
-              <span>0</span>
+              >Active:
+              <span data-active>0</span>
             </span>
             <span
               >Completed:
-              <span>0</span>
+              <span data-completed>0</span>
             </span>
           </p>
           <hr />
@@ -52,19 +52,15 @@
             </button>
           </div>
         </div>
-        <div class="list__events" id="events"></div>
-        <div class="no-todos">
-          <h4>NO TODOS...</h4>
-        </div>
+        <div class="list__events" id="events" data-list></div>
       </div>
     </div>
 
-    <template id="template">
-      <div class="list__events__todoItem">
-        <input type="checkbox" />
-        <p class="template__action"></p>
-        <span id="title"></span>
-        <button>x</button>
+    <template id="template" data-template>
+      <div class="list__events__todoItem" data-template-list>
+        <input type="checkbox" class="template__checkbox" data-template-input />
+        <div id="title" data-template-title></div>
+        <button class="dtn-remove" data-dtn-remove>x</button>
       </div>
     </template>
   </body>
