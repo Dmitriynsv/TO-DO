@@ -12,9 +12,10 @@ addTodoButton.addEventListener('click',() =>{
 
   if (text) {
     const newTodo = {
-      id: todos.length +1,
+      id: Date.now(),
       text,
       completed: false,
+      date: getStringDate(),
     }
     todos.push(newTodo);
     infoTodo.Value  = '';
@@ -22,13 +23,13 @@ addTodoButton.addEventListener('click',() =>{
   infoTodo.focus();
 
   updateActiveCounter();
-  render ();
+  render (todos);
 });
 
-function createTodo(id,text){
+function createTodo(id,text,date){
   const todoItem = document.importNode(template.content, true);
   const todoText = todoItem.getElementById('title');
-  todoText.textContent = text;
+  todoText.textContent = text+' '+date;
   infoTodo.value = ''; 
   const btnRemove = todoItem.querySelector('[data-dtn-remove]');
   const checkbox = todoItem.querySelector('[data-template-input]');
@@ -40,7 +41,7 @@ function createTodo(id,text){
    updateActiveCounter(); 
    updateCompletedCounter();   
 
-    render();
+    render(todos);
   })
   
   checkbox.addEventListener('click', ()=>{
@@ -57,10 +58,10 @@ function clearTodoList(){
   events.innerHTML = '';  
 }
 
-function appendTodos() {
-  if (todos.length) {
-    todos.forEach(el => {
-      const todo = createTodo(el.id, el.text);
+function appendTodos(elements) {
+  if (elements.length) {
+    elements.forEach(el => {
+      const todo = createTodo(el.id, el.text, el.date);
       events.append (todo);
     })
   } else {
@@ -69,12 +70,12 @@ function appendTodos() {
   }
 }
 
-function render(){
+function render(elements){
   clearTodoList();
-  appendTodos();
+  appendTodos(elements);
 }
 
-render();
+render(todos);
 
 function updateActiveCounter(){
   active.innerHTML = todos.filter((el) => el.completed === false).length;
@@ -84,3 +85,41 @@ function updateCompletedCounter(){
   completed.innerHTML = todos.filter((el) => el.completed === true).length;
 }
 
+const search = document.querySelector('[data-inter-event]');
+
+search.addEventListener('input', () => {
+  const searchValue = search.value.trim();
+
+  if (searchValue) {
+      const filterTodoList = todos.filter( el => el.text.includes(searchValue));
+      render(filterTodoList);
+  } else{
+    render(todos);
+  }
+})
+
+const getStringDate = (
+  year = new Date().getFullYear(),
+  month = new Date().getMonth() + 1, 
+  day = new Date().getDate(),
+  hours = new Date().getHours(),
+  minutes = new Date().getMinutes(),
+  ) => {
+  
+  const date = new Date(year, month, day, hours, minutes);
+
+  return `${date.getHours()}:${String(date.getMinutes())} ${date.getDate() }-${ date.getMonth() }-${ date.getFullYear() }`;
+}
+
+const btnDeleteAll = document.querySelector ('.control__operation_delete');
+btnDeleteAll.addEventListener('click', ()=> {
+  todos = [];
+  render(todos);
+})
+ 
+
+const btnDeleteComplected = document.querySelector ('.control__operation_completed');
+btnDeleteComplected.addEventListener('click', ()=> {
+  todos = todos.filter((el) => el.completed === false);
+  render(todos);
+})
