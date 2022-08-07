@@ -114,6 +114,7 @@ const getStringDate = (
 const btnDeleteAll = document.querySelector ('.control__operation_delete');
 btnDeleteAll.addEventListener('click', ()=> {
   todos = [];
+  updateActiveCounter();
   render(todos);
 })
  
