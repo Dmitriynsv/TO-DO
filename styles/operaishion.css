@@ -12,6 +12,8 @@
   font-size: 1rem;
   font-weight: 500;
   box-shadow: 0px 3px 8px 0px rgba(103, 28, 9, 0.8);
+  pointer-events: none;
+  opacity: 0.5;
 }
 .control__operation_checkbox:checked ~ .control__operation_delete {
   pointer-events: auto;
